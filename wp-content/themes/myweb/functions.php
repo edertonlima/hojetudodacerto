@@ -14,11 +14,6 @@
 	// Unable the admin bar
 	add_filter('show_admin_bar', '__return_false');
 
-
-
-
-
-
 	/* MENUS */
 	add_action( 'after_setup_theme', 'register_menu' );
 	function register_menu() {
@@ -29,6 +24,8 @@
 
 
 
+	// slide
+	/*
 	function change_post_label() {
 	    global $menu;
 	    global $submenu;
@@ -58,25 +55,35 @@
 	 
 	add_action( 'admin_menu', 'change_post_label' );
 	add_action( 'init', 'change_post_object' );
+	*/
+	// slide
 
+	// remove itens padrões
+	/*
 	add_action( 'init', 'my_custom_init' );
 	function my_custom_init() {
 		remove_post_type_support( 'post', 'editor' );
 		remove_post_type_support( 'page', 'thumbnail' );
 	}
+	*/
 
+	// remove page
+	/*
 	function remove_post_custom_fields() {
 		remove_meta_box( 'pageparentdiv' , 'page' , 'side' ); 
 	}
 	add_action( 'admin_menu' , 'remove_post_custom_fields' );
+	*/
 
-	// Remove tags support from posts
+	// Remove tags
 	function myprefix_unregister_tags() {
 	    unregister_taxonomy_for_object_type('post_tag', 'post');
 	}
 	add_action('init', 'myprefix_unregister_tags');
+	// end Remove tags
 
-	/* SERVIÇOS */
+	// SERVIÇOS
+	/*
 	add_action('init', 'type_post_servicos');
 	function type_post_servicos() {
 		$labels = array(
@@ -111,10 +118,11 @@
 		register_post_type( 'servicos' , $args );
 		flush_rewrite_rules();
 	}
+	*/
 
 
-
-	/* CLIENTES */
+	// CLIENTES
+	/*
 	add_action('init', 'type_post_clientes');
 	function type_post_clientes() {
 		$labels = array(
@@ -149,11 +157,12 @@
 		register_post_type( 'clientes' , $args );
 		flush_rewrite_rules();
 	}
+	*/
 
 
 
-
-	/* PRODUTOS */
+	// PRODUTOS
+	/*
 	add_action( 'init', 'create_post_type_importacao' );
 	function create_post_type_importacao() {
 
@@ -189,8 +198,10 @@
 
 	    register_post_type( 'importacao', $args );
 	}
+	*/
 
-
+	// exportação
+	/*
 	add_action( 'init', 'create_post_type_exportacao' );
 	function create_post_type_exportacao() {
 
@@ -226,16 +237,39 @@
 
 	    register_post_type( 'exportacao', $args );
 	}
+	*/
+
 
 
 add_action('admin_head', 'my_custom_fonts');
 
 function my_custom_fonts() {
   echo '<style>
-	#menu-media, #menu-comments, #menu-appearance, #menu-plugins, #menu-tools, #menu-settings, #toplevel_page_edit-post_type-acf {
-		display: none;
+	#menu-media, #menu-comments, #menu-appearance, #menu-plugins, #menu-tools, #menu-settings, #toplevel_page_edit-post_type-acf, #toplevel_page_edit-post_type-acf-field-group, 
+	#toplevel_page_zilla-likes, 
+	#screen-options-link-wrap, 
+	.acf-postbox h2 a, 
+	#the-list #post-94, 
+	#the-list #post-65, 
+	.taxonomy-category .form-field.term-parent-wrap 
+	{
+		display: none!important;
 	}
   </style>';
+}
+
+
+
+function gera_url_encurtada($url){
+    $url = urlencode($url);
+    $xml =  simplexml_load_file("http://migre.me/api.xml?url=$url");
+ 
+    if($xml->error != 0){
+        return $xml->errormessage;
+    }
+    else{
+        return $xml->migre;
+    }
 }
 
 	/* Insere campo do link do VIDEO *
@@ -546,4 +580,29 @@ function jeherve_remove_all_jp_css() {
 add_action('wp_print_styles', 'jeherve_remove_all_jp_css' );
 
 */
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Configurações',
+		'menu_title'	=> 'Configurações',
+		'menu_slug' 	=> 'configuracoes-geral',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> true
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Configurações Gerais',
+		'menu_title'	=> 'Geral',
+		'parent_slug'	=> 'configuracoes-geral',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Configurações de Redes sociais',
+		'menu_title'	=> 'Redes sociais',
+		'menu_slug' 	=> 'redes-sociais',
+		'parent_slug'	=> 'configuracoes-geral',
+	));
+}
+
 ?>
