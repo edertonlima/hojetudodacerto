@@ -4,8 +4,8 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-8">
 
+			<div class="col-9" style="float: right;">
 				<?php while ( have_posts() ) : the_post();
 
 					get_template_part( 'content', get_post_format() ); ?>
@@ -20,11 +20,12 @@
 					)); ?>
 
 				<?php endwhile; ?>
-
 			</div>
-			<div class="col-4">
+
+			<div class="col-3">
 				<?php include 'sidebar.php'; ?>
 			</div>
+
 		</div>
 
 	</div>

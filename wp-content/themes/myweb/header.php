@@ -95,7 +95,7 @@
 
 <!-- JQUERY -->
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery-2.2.3.min.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/owl.carousel.min.js"></script>
+<!--<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/owl.carousel.min.js"></script>-->
 
 <script type="text/javascript">
 
@@ -120,58 +120,28 @@
 </head>
 <body <?php body_class(); ?>>
 
-	<header class="header">
-		<nav class="nav">
-			<div class="container">
-				<ul class="menu">
+	<header class="box-menu">
+		<div class="container">
+			<div class="row logo">
+				<div class="col-6">
+					<h1><a href="<?php echo get_home_url(); ?>" alt="<?php bloginfo( 'name' ); ?>">
+						<img src="<?php the_field('logo','option'); ?>" alt="<?php bloginfo( 'name' ); ?>">
+					</a></h1>
+				</div>
 
-					<?php $page = get_page_by_path('home'); ?>
-					<li class="<?php if(is_page($page->ID)){ echo 'ativo'; } ?>"><a href="<?php echo get_home_url(); ?>" title="HOME">HOME</a></li>
-					<li class="<?php if(is_category()){ echo 'ativo'; } ?>">
-						<a href="javascript:" title="">CATEGORIAS <i class="fa fa-angle-down"></i></a>
-
-						<ul>
-							<?php
-								$args = array(
-								    'taxonomy'      => 'category',
-								    'parent'        => 0, // get top level categories
-								    'orderby'       => 'name',
-								    'order'         => 'ASC',
-								    'hierarchical'  => 1,
-								    'pad_counts'    => 0
-								);
-
-								$categories = get_categories( $args );
-								if(is_category()){ $category_active = get_the_category(); }
-								foreach ( $categories as $category ){
-									if(is_category()){ 
-										if($category->term_id == $category_active[0]->term_id){
-											$class_category = 'ativo';
-										}else{
-											$class_category = '';
-										}
-									}
-									echo '<li class="'.$class_category.'"><a href="'. esc_url(get_category_link($category->term_id)) .'" title="">'. $category->name .'</a></li>'; //print_r($category);
-								}
-							?>
-
-						</ul>
-
-					</li>
-
-					<?php $page = get_page_by_path('sobre-mim'); ?>
-					<li class="<?php if(is_page($page->ID)){ echo 'ativo'; } ?>"><a href="<?php echo get_page_link($page->ID); ?>" title="<?php echo get_the_title($page->ID); ?>"><?php echo get_the_title($page->ID); ?></a></li>
-
-					<?php $page = get_page_by_path('contato'); ?>
-					<li class="<?php if(is_page($page->ID)){ echo 'ativo'; } ?>"><a href="<?php echo get_page_link($page->ID); ?>" title="<?php echo get_the_title($page->ID); ?>"><?php echo get_the_title($page->ID); ?></a></li>
-				</ul>
+				<div class="col-6">
+					<img src="<?php the_field('img_topo','option'); ?>" class="img-topo">
+				</div>
+			</div>
+			
+			<nav class="nav">
+				<?php wp_nav_menu( array(
+					'menu'           => 'Menu Principal',
+				    'theme_location' => 'primary',
+				    'items_wrap'     => '<ul class="menu">%3$s</ul>'
+				) ); ?>
 
 				<?php include 'social.php'; ?>
-
-			</div>
-		</nav>
-
-		<h1 class="logo"><a href="<?php echo get_home_url(); ?>" alt="<?php bloginfo( 'name' ); ?>">
-			<img src="<?php the_field('logo','option'); ?>" alt="<?php bloginfo( 'name' ); ?>">
-		</a></h1>
+			</nav>
+		</div>
 	</header>

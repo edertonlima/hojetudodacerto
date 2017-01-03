@@ -1104,7 +1104,7 @@ function get_the_tag_list( $before = '', $sep = '', $after = '', $id = 0 ) {
  */
 function the_tags( $before = null, $sep = ', ', $after = '' ) {
 	if ( null === $before )
-		$before = __('Tags: ');
+		$before = __('<span>Tags:</span>');
 
 	$the_tags = get_the_tag_list( $before, $sep, $after );
 

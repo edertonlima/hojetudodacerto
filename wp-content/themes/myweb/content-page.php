@@ -2,80 +2,54 @@
 
 	<header class="post-header">
 		<div class="container-info">
-			<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-			<span class="post-date" title="2016-10-06 21:32:47"><?php the_date(); ?></span>
+			<h2><?php the_title(); ?></h2>
 		</div>
-	</header>
+	</header>		
+
+	<?php $imgPage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' ); ?>
 	
-	<div class="row">
-		<div class="col-12">
+	<div class="conteudo-post">
+		<?php 
+		$imagem = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );
+		if($imagem[0] != ''){ ?>
+			<img src="<?php if($imagem[0]){ echo $imagem[0]; } ?>" alt="<?php the_title(); ?>" class="image-post">
+		<?php } ?>
 
-			<?php $imgPage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' ); ?>
-			
-			<div class="conteudo-post<?php if(is_page(2)){ echo ' sobre-mim'; } ?>">
-				<?php if($imgPage){ ?>
-					<img src="<?php if($imgPage[0]){ echo $imgPage[0]; } ?>" alt="" class="img-page">
-				<?php } ?>
-
-				<div class="conteudo-post">
-					<?php the_content(); ?>
-				</div>
-
-				<?php if(is_page(84)){ ?>
-					<form action="javascript:" class="contato">
-						<fieldset class="">
-							<label for="nome">Seu Nome</label>
-							<input type="text" name="nome" id="nome" placeholder="Nome">
-						</fieldset>
-
-						<fieldset class="">
-							<label for="email">Seu E-mail</label>
-							<input type="text" name="email" id="email" placeholder="E-mail">
-						</fieldset>
-
-						<fieldset class="mensagem">
-							<label for="mensagem">Sua Mensagem</label>
-							<textarea name="mensagem" id="mensagem" rows="10"></textarea>
-						</fieldset>
-
-						<button type="button" class="enviar">Enviar</button>
-						<p class="msg-form"></p>	
-					</form>
-				<?php } ?>
+		<?php if(get_field('media')){ ?>
+			<div class="media">
+				<?php the_field('media'); ?>
 			</div>
+		<?php } ?>
 
+		<div class="conteudo">
+			<?php the_content(); ?>
 		</div>
+	
+		<?php $page = get_page_by_path('contato'); ?>
+		<?php if(is_page($page->ID)){ ?>
+			<form action="javascript:" class="row contato">
+				<fieldset class="col-6">
+					<span><input type="text" name="nome" id="nome" placeholder="Nome"></span>
+				</fieldset>
+
+				<fieldset class="col-6">
+					<span><input type="text" name="email" id="email" placeholder="E-mail"></span>
+				</fieldset>
+
+				<fieldset class="col-12">
+					<textarea name="mensagem" id="mensagem" rows="10"></textarea>
+				</fieldset>
+
+				<button type="button" class="enviar">Enviar</button>
+				<p class="msg-form"></p>	
+			</form>
+		<?php } ?>
 	</div>
 
-	<footer class="post-footer">
-		<?php /* if(is_single()){ ?>
-			<span class="autor">
-				<a href="#">
-					por <?php the_author(); ?>
-				</a>
-			</span>
-		<?php }else{ ?>
-			<span class="comentarios">
-				<a href="#">
-					<i class="fa fa-comments-o"></i> 0
-				</a>
-			</span>
-		<?php } ?>
-		</span>	*/ ?>
-		
-		<?php include 'social-share.php'; ?>
-					
-		<span class="likes">
-			<a href="#" class="" title="">
-				<i class="fa fa-heart" aria-hidden="true"></i>
-				<span class="zilla-likes-count">10</span>
-			</a>
-		</span>
-	</footer>
+</article>
 
-</article><!-- #post-## -->
-
-<?php if(is_page(84)){ ?>
+<?php $page = get_page_by_path('contato'); ?>
+<?php if(is_page($page->ID)){ ?>
 <script type="text/javascript">
 	$(document).ready(function(){
 	

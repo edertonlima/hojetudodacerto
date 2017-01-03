@@ -1,22 +1,19 @@
 <?php get_header(); ?>
 
-<session class="list-categoria post-list">
+<session class="post-det list">
 	<div class="container">
 
-		<header class="categoria-header">
-			<span class="subTit">CATEGORIA</span><h2>
-			<h2><?php the_archive_title(); ?></h2>			
-			<?php the_archive_description( '<div class="taxonomy-description">', '</div>' );
-			?>
-		</header><!-- .page-header -->
-
 		<div class="row">
-			<div class="col-8">
+			<div class="col-9" style="float: right;">
+
+			<header class="categoria-header">
+				<h2><?php the_archive_title(); ?></h2>
+			</header><!-- .page-header -->
 				
 				<?php if ( have_posts() ) :
 
 					while ( have_posts() ) : the_post();
-						get_template_part( 'content','list');
+						get_template_part( 'content','');
 					endwhile;
 
 					// Previous/next page navigation.
@@ -32,7 +29,7 @@
 				endif; ?>
 
 			</div>
-			<div class="col-4">
+			<div class="col-3">
 				<?php include 'sidebar.php'; ?>
 			</div>
 		</div>

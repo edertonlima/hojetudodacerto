@@ -76,11 +76,11 @@
 	*/
 
 	// Remove tags
-	function myprefix_unregister_tags() {
+	/*function myprefix_unregister_tags() {
 	    unregister_taxonomy_for_object_type('post_tag', 'post');
 	}
 	add_action('init', 'myprefix_unregister_tags');
-	// end Remove tags
+	// end Remove tags*/
 
 	// SERVIÇOS
 	/*
@@ -253,7 +253,7 @@ function my_custom_fonts() {
 	#the-list #post-65, 
 	.taxonomy-category .form-field.term-parent-wrap 
 	{
-		display: none!important;
+		/*display: none!important;*/
 	}
   </style>';
 }
