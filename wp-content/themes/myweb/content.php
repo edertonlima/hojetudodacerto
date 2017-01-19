@@ -1,6 +1,9 @@
 <article class="post">
 
 	<header class="post-header">
+		
+		<?php anuncios(); ?>
+		
 		<div class="container-info">
 			<span class="post-date">
 				<i class="fa fa-calendar" aria-hidden="true"></i>
@@ -8,11 +11,12 @@
 			</span>
 			<h2><?php the_title(); ?></h2>
 			<span class="autor">por <?php the_author(); ?></span>
+
+			<p class="descricao"><?php the_field('descrição'); ?></p>
 		</div>
 	</header>
 
 	<div class="conteudo-post">
-		<p class="descricao"><?php the_field('descrição'); ?></p>
 
 		<?php 
 		$imagem = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), '' );

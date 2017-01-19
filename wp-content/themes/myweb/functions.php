@@ -582,6 +582,15 @@ add_action('wp_print_styles', 'jeherve_remove_all_jp_css' );
 */
 
 if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Anúncios',
+		'menu_title'	=> 'Anúncios',
+		'menu_slug' 	=> 'anuncios',
+		'capability'	=> 'edit_posts',
+		'icon_url' => 'dashicons-tag',
+		'redirect'		=> false
+	));
 	
 	acf_add_options_page(array(
 		'page_title' 	=> 'Configurações',

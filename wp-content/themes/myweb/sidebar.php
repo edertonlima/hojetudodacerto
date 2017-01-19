@@ -7,9 +7,25 @@
 		<p><?php the_field('descrição',$page->ID); ?></p>
 	</div>
 
-	<form action="#" class="search">
-		<input type="text" name="">
-		<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+	<form action="<?php echo home_url( '/' ); ?>" class="search" method="get" role="search">
+		<fieldset class="busca">
+			<input type="text" name="search">
+			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</fieldset>
+		<fieldset class="filtro">
+			<label for="texto">
+				<input type="checkbox" name="texto" id="texto">
+				Texto
+			</label>
+			<label for="audio">
+				<input type="checkbox" name="audio" id="audio">
+				Áudio
+			</label>
+			<label for="video">
+				<input type="checkbox" name="video" id="video">
+				Vídeo
+			</label>
+		</fieldset>
 	</form>
 
 	<div class="destaque">
