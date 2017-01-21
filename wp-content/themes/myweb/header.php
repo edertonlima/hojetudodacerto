@@ -47,7 +47,9 @@
 
 	$titulo = $titulo.get_bloginfo('name'); 
 	$autor = get_bloginfo('name');
+
 ?>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="shortcut icon" href="<?php the_field('favicon', 'option'); ?>" type="image/x-icon" />
@@ -123,13 +125,14 @@
 	<header class="box-menu">
 		<div class="container">
 			<div class="row logo">
-				<div class="col-6">
+				<div class="col-6 col-logo">
 					<h1><a href="<?php echo get_home_url(); ?>" alt="<?php bloginfo( 'name' ); ?>">
-						<img src="<?php the_field('logo','option'); ?>" alt="<?php bloginfo( 'name' ); ?>">
+						<img srcset="<?php the_field('logo_mobile','option'); ?>" alt="<?php bloginfo( 'name' ); ?>" class="mobile">
+						<img srcset="<?php the_field('logo','option'); ?>" alt="<?php bloginfo( 'name' ); ?>">
 					</a></h1>
 				</div>
 
-				<div class="col-6">
+				<div class="col-6 col-img">
 					<img src="<?php the_field('img_topo','option'); ?>" class="img-topo">
 				</div>
 			</div>

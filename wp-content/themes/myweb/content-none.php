@@ -11,9 +11,6 @@
 ?>
 
 <section class="no-results not-found">
-	<header class="page-header">
-		<h1 class="page-title"><?php _e( 'Nothing Found', 'twentyfifteen' ); ?></h1>
-	</header><!-- .page-header -->
 
 	<div class="page-content">
 
@@ -23,8 +20,12 @@
 
 		<?php elseif ( is_search() ) : ?>
 
+			<header class="categoria-header">
+				<h2>Desculpe, não encontramos nada :( </h2>
+			</header><!-- .page-header -->
+
 			<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'twentyfifteen' ); ?></p>
-			<?php get_search_form(); ?>
+			<?php //get_search_form(); ?>
 
 		<?php else : ?>
 

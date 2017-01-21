@@ -1,62 +1,11 @@
 <?php get_header(); ?>
 
-<?php if( have_rows('anuncios','option') ):
-	$anuncios = array();
-	
-	$i=0;
-	while ( have_rows('anuncios','option') ) : the_row();
-
-		if(get_sub_field('status','option')){
-			$anuncios[$i]['imagem'] = get_sub_field('imagem','option');
-			$anuncios[$i]['url'] = get_sub_field('url','option');
-		}
-
-		$i=$i+1;
-
-	endwhile; //print_r($anuncios); /*shuffle($anuncios); echo '<br><br>'; print_r($anuncios); echo '<br><br>'*/;
-
-	function anuncios(){
-		global $anuncios;
-		global $linha;
-		global $numAnuncio;
-		$novaLinha = $numAnuncio[$linha];
-		//echo $anuncios[$novaLinha]['imagem'];
-		//echo $anuncios[4]['imagem'];
-
-		if($anuncios[$novaLinha]['url']!=''){
-			echo '<a href="'.$anuncios[$novaLinha]['url'].'">';
-		}
-
-		echo '<img src="'.$anuncios[$novaLinha]['imagem'].'" class="banner">';
-
-		if($anuncios[$novaLinha]['url']!=''){
-			echo '</a>';
-		}
-	}
-
-endif; 
-$qtdAnuncios = count($anuncios); 
-
-for($count = 0; $count < $qtdAnuncios; $count++){
-	$numAnuncio[] = $count;
-}
-
-//print_r($numAnuncio);
-shuffle($numAnuncio);
-//echo '<br><br>';
-//var_dump($numAnuncio);
-//var_dump($anuncios);
-
-?>
-
 <div class="container">
 	<div class="row">
-		<div class="col-3">
 
-			<?php include 'sidebar.php'; ?>
+		<?php include 'sidebar.php'; ?>
 
-		</div>
-		<div class="col-9">
+		<div class="col-9 body-container">
 			
 			<session class="post-det list"> 
 			    <?php
@@ -92,7 +41,6 @@ shuffle($numAnuncio);
 		</div>
 	</div>
 </div>
-
 
 
 <?php /*

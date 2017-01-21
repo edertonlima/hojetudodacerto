@@ -2,7 +2,7 @@
 	<section class="news">
 		<div class="container">
 			<div class="row">
-				<form action="#">
+				<form action="javascript:">
 					<fieldset class="col-12">
 						<h2 class="center">News Whats</h2>
 						<p class="center">Deseja receber via whatsapp os textos diários?</p>
@@ -17,8 +17,9 @@
 						<span><input type="text" placeholder="Telefone" name="telefone" id="telefone"></span>
 					</fieldset>
 					<fieldset class="col-12 center">
-						<button class="enviar">Enviar</button>
+						<button class="enviar-new">Enviar</button>
 					</fieldset>
+					<p class="msg-form-new"></p>	
 				</form>
 			</div>
 		</div>
@@ -101,6 +102,44 @@ add_row( 'new_whats', 'asdadadad', 'field_58738fd6d98fb' ); */
 			*/ ?>
 		</div>
 	</footer>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	
+		$(".enviar-new").click(function(){
+			$('.enviar-new').html('ENVIANDO').prop( "disabled", true );
+			$('.msg-form-new').removeClass('erro ok').html('');
+			var nome = $('#nome').val();
+			var email = $('#email').val();
+			var telefone = $('#telefone').val();
+			var para = '<?php the_field('email', 'option'); ?>';
+			var nome_site = '<?php bloginfo('name') ?>';
+
+			if(email!=''){
+				if(nome!=''){
+					$.getJSON("<?php echo get_template_directory_uri(); ?>/mail.php", { nome: nome, email: email, telefone: telefone, para: para, nome_site: nome_site }, function(result){		
+						if(result=='ok'){
+							resultado = 'Enviado com sucesso! Obrigado.';
+							classe = 'ok';
+						}else{
+							resultado = result;
+							classe = 'erro';
+						}
+						$('.msg-form-new').addClass(classe).html(resultado);
+						$('.contato').trigger("reset");
+						$('.enviar-new').html('ENVIAR').prop( "disabled", false );
+					});
+				}else{
+					$('.msg-form-new').addClass('erro').html('Por favor, você precisa digitar um nome.');
+					$('.enviar-new').html('Enviar').prop( "disabled", false );
+				}
+			}else{
+				$('.msg-form-new').addClass('erro').html('Por favor, digite um e-mail válido.');
+				$('.enviar-new').html('Enviar').prop( "disabled", false );
+			}
+		});
+	});
+</script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <article class="post">
 
 	<header class="post-header">
-		<div class="container-info">
+		<div class="categoria-header">
 			<h2><?php the_title(); ?></h2>
 		</div>
 	</header>		
@@ -27,22 +27,24 @@
 	
 		<?php $page = get_page_by_path('contato'); ?>
 		<?php if(is_page($page->ID)){ ?>
-			<form action="javascript:" class="row contato">
-				<fieldset class="col-6">
-					<span><input type="text" name="nome" id="nome" placeholder="Nome"></span>
-				</fieldset>
+			<div class="row">
+				<form action="javascript:" class="contato">
+					<fieldset class="col-6">
+						<span><input type="text" name="nome" id="nome" placeholder="Nome"></span>
+					</fieldset>
 
-				<fieldset class="col-6">
-					<span><input type="text" name="email" id="email" placeholder="E-mail"></span>
-				</fieldset>
+					<fieldset class="col-6">
+						<span><input type="text" name="email" id="email" placeholder="E-mail"></span>
+					</fieldset>
 
-				<fieldset class="col-12">
-					<textarea name="mensagem" id="mensagem" rows="10"></textarea>
-				</fieldset>
+					<fieldset class="col-12">
+						<textarea name="mensagem" id="mensagem" rows="10"></textarea>
+					</fieldset>
 
-				<button type="button" class="enviar">Enviar</button>
-				<p class="msg-form"></p>	
-			</form>
+					<button type="button" class="enviar">Enviar</button>
+					<p class="msg-form"></p>	
+				</form>
+			</div>
 		<?php } ?>
 	</div>
 

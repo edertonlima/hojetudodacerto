@@ -4,7 +4,9 @@
 	<div class="container">
 		<div class="row">
 
-			<div class="col-9" style="float: right;">
+			<?php include 'sidebar.php'; ?>
+
+			<div class="col-9 body-container">
 				<?php
 				// Start the loop.
 				while ( have_posts() ) : the_post();
@@ -22,9 +24,7 @@
 				?>
 			</div>
 
-			<div class="col-3">
-				<?php include 'sidebar.php'; ?>
-			</div>
+			
 		</div>
 	</div>
 </session>

@@ -20,8 +20,105 @@
 	  register_nav_menu( 'primary', __( 'Primary Menu', 'header' ) );
 	}
 
+	function countPostDate($mes,$ano){
+		$args = array(
+		    'date_query' => array(
+		        array(
+		            'year'  => $ano,
+		            'month' => $mes
+		        ),
+		    ),
+		);
+		$query = new WP_Query( $args );
+		return $query->post_count;
+	}
+
+	function anuncios(){
+		global $anuncios;
+		global $linha;
+		global $numAnuncio;
+		global $qtdAnuncios;
+		$novaLinha = $numAnuncio[$linha];
+		if(($qtdAnuncios>0) && ($qtdAnuncios > $linha)){
+
+			if($anuncios[$novaLinha]['url']!=''){
+				echo '<a href="'.$anuncios[$novaLinha]['url'].'">';
+			}
+
+			echo '<img src="'.$anuncios[$novaLinha]['imagem'].'" class="banner">';
+
+			if($anuncios[$novaLinha]['url']!=''){
+				echo '</a>';
+			}
+
+			echo '
+			<div class="container-info banner-padding">
+				<span class="post-date">
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+					'.get_the_date().'
+				</span>
+				<h2>'.get_the_title().'</h2>
+				<span class="autor">por '.get_the_author().'</span>
+
+				<p class="descricao">'.get_field('descrição').'</p>
+			</div>
+			';
+		}else{
+			echo '
+			<div class="container-info">
+				<span class="post-date">
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+					'.get_the_date().'
+				</span>
+				<h2>'.get_the_title().'</h2>
+				<span class="autor">por '.get_the_author().'</span>
+
+				<p class="descricao">'.get_field('descrição').'</p>
+			</div>
+			';
+		}
+	}
+
+	if( have_rows('anuncios','option') ):
+		$anuncios = array();
+		
+		$i=0;
+		while ( have_rows('anuncios','option') ) : the_row();
+
+			if(get_sub_field('status','option')){
+				$anuncios[$i]['imagem'] = get_sub_field('imagem','option');
+				$anuncios[$i]['url'] = get_sub_field('url','option');
+			}
+
+			$i=$i+1;
+
+		endwhile; //print_r($anuncios); /*shuffle($anuncios); echo '<br><br>'; print_r($anuncios); echo '<br><br>'*/;
+
+	endif; 
+	$qtdAnuncios = count($anuncios); 
+
+	if($qtdAnuncios > 0){
+		for($count = 0; $count < $qtdAnuncios; $count++){
+			$numAnuncio[] = $count;
+		}
+	}
+
+	//print_r($numAnuncio);
+	shuffle($numAnuncio);
+	//echo '<br><br>';
+	//var_dump($numAnuncio);
+	//var_dump($anuncios);
 
 
+
+function SearchFilter($query) {
+	if ($query->is_search) {
+	$query->set('post_type', 'post');
+	}
+	return $query;
+}
+
+add_filter('pre_get_posts','SearchFilter');
 
 
 	// slide
@@ -59,13 +156,13 @@
 	// slide
 
 	// remove itens padrões
-	/*
+	
 	add_action( 'init', 'my_custom_init' );
 	function my_custom_init() {
 		remove_post_type_support( 'post', 'editor' );
-		remove_post_type_support( 'page', 'thumbnail' );
+		//remove_post_type_support( 'page', 'thumbnail' );
 	}
-	*/
+	
 
 	// remove page
 	/*
@@ -253,7 +350,7 @@ function my_custom_fonts() {
 	#the-list #post-65, 
 	.taxonomy-category .form-field.term-parent-wrap 
 	{
-		/*display: none!important;*/
+		display: none!important;
 	}
   </style>';
 }

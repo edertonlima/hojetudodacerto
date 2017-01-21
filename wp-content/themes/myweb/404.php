@@ -4,28 +4,28 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-8">
+
+			<?php include 'sidebar.php'; ?>
+
+			<div class="col-9 body-container">
 
 				<article class="post">
 
 					<header class="post-header">
-						<div class="container-info">
-							<span class="tit-page">DESCULPE</span>
-							<h2>UPS! ESSA PÁGINA NÃO PODE SER ENCONTRADA</h2>
+						<div class="categoria-header">
+							<h2>DESCULPE</h2>
+							<p>Não conseguimos entrar o que você está procurando. :(</p>
 						</div>
-					</header>
+					</header>	
 
 					<div class="conteudo-post">
-						<br><br>
-						<p align="center">Parece que não foi possível encontrar o que você estava procurando. <br>Por favor, tente encontrar acessando as categorias ao lado.</p>
+						<p>Por favor, tente encontrar acessando as categorias ao lado.</p>
 					</div>
 
 				</article>
 
 			</div>
-			<div class="col-4">
-				<?php include 'sidebar.php'; ?>
-			</div>
+			
 		</div>
 
 	</div>

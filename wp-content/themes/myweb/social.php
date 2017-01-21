@@ -10,4 +10,8 @@
 	<?php if(get_field('facebook','option')){ ?>
 		<li><a href="<?php the_field('facebook','option') ?>" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
 	<?php } ?>
+
+	<?php if(get_field('soundcloud','option')){ ?>
+		<li><a href="<?php the_field('soundcloud','option') ?>" title="SoundCloud" target="_blank"><i class="fa fa-soundcloud"></i></a></li>
+	<?php } ?>
 </ul>

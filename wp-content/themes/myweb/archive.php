@@ -4,16 +4,22 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-9" style="float: right;">
+			<?php include 'sidebar.php'; ?>
+			
+			<div class="col-9 body-container">
 
-			<header class="categoria-header">
-				<h2><?php the_archive_title(); ?></h2>
-			</header><!-- .page-header -->
+				<header class="categoria-header">
+					<h2><?php the_archive_title(); ?></h2>
+				</header><!-- .page-header -->
 				
 				<?php if ( have_posts() ) :
 
 					while ( have_posts() ) : the_post();
-						get_template_part( 'content','');
+				        $linha = 0;
+				        								
+						get_template_part( 'content', get_post_format() );
+						$linha = $linha+1;
+								
 					endwhile;
 
 					// Previous/next page navigation.
@@ -29,9 +35,7 @@
 				endif; ?>
 
 			</div>
-			<div class="col-3">
-				<?php include 'sidebar.php'; ?>
-			</div>
+
 		</div>
 
 	</div>

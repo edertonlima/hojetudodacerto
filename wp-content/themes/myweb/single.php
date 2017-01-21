@@ -5,7 +5,9 @@
 
 		<div class="row">
 
-			<div class="col-9" style="float: right;">
+			<?php include 'sidebar.php'; ?>
+
+			<div class="col-9 body-container">
 				<?php while ( have_posts() ) : the_post();
 
 					get_template_part( 'content', get_post_format() ); ?>
@@ -20,10 +22,6 @@
 					)); ?>
 
 				<?php endwhile; ?>
-			</div>
-
-			<div class="col-3">
-				<?php include 'sidebar.php'; ?>
 			</div>
 
 		</div>

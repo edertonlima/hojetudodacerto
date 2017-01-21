@@ -4,16 +4,6 @@
 		
 		<?php anuncios(); ?>
 		
-		<div class="container-info">
-			<span class="post-date">
-				<i class="fa fa-calendar" aria-hidden="true"></i>
-				<?php the_date(); ?>
-			</span>
-			<h2><?php the_title(); ?></h2>
-			<span class="autor">por <?php the_author(); ?></span>
-
-			<p class="descricao"><?php the_field('descrição'); ?></p>
-		</div>
 	</header>
 
 	<div class="conteudo-post">
@@ -24,24 +14,36 @@
 			<img src="<?php if($imagem[0]){ echo $imagem[0]; } ?>" alt="<?php the_title(); ?>" class="image-post">
 		<?php } ?>
 
-		<?php if(get_field('media')){ ?>
-			<div class="media">
-				<?php the_field('media'); ?>
+		<?php if(get_field('video')){ ?>
+			<div class="media youtube">
+				<?php the_field('video'); ?>
 			</div>
 		<?php } ?>
 
-		<div class="conteudo">
-			<?php the_content(); ?>
-		</div>
-	</div>
+		<?php if(get_field('audio')){ ?>
+			<div class="media">
+				<?php the_field('audio'); ?>
+			</div>
+		<?php } ?>
 
-	<div class="leia-mais">
-		<a href="<?php the_permalink(); ?>" title="Continue lendo">Continue lendo <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+		<?php if(get_field('texto')){ ?>
+			<div class="conteudo">
+				<?php the_field('texto'); ?>
+			</div>
+		<?php } ?>
+
 	</div>
+	
+	<?php if(get_field('texto')){ ?>
+		<div class="leia-mais">
+			<a href="<?php the_permalink(); ?>" title="Continue lendo">Continue lendo <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+		</div>
+	<?php } ?>
 
 	<footer class="post-footer">		
 		<?php include 'social-share.php'; ?>
 
+		<?php /*
 		<div class="aviso-erro">
 			<a href="#">
 				<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -54,6 +56,7 @@
 				Imprimir
 			</a>
 		</div>
+		*/ ?>
 	</footer>
 
 	<div class="tags">

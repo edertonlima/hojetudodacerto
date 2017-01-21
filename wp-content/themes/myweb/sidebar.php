@@ -1,4 +1,4 @@
-<div class="sidebar">
+<session class="col-3 sidebar">
 
 	<div class="sobre">
 		<?php $page = get_page_by_path('sobre-o-altivo'); ?>
@@ -6,23 +6,23 @@
 		<h2><a href="<?php the_permalink($page->ID); ?>" title="<?php the_field('nome_perfil',$page->ID); ?>"><?php the_field('nome_perfil',$page->ID); ?></a></h2>
 		<p><?php the_field('descrição',$page->ID); ?></p>
 	</div>
-
-	<form action="<?php echo home_url( '/' ); ?>" class="search" method="get" role="search">
+	
+	<form role="search" method="get" id="searchform" class="search" action="<?php echo home_url( '/' ); ?>">
 		<fieldset class="busca">
-			<input type="text" name="search">
+			<input value="<?php echo $_GET['s']; ?>" name="s" id="s" type="text">
 			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 		</fieldset>
 		<fieldset class="filtro">
 			<label for="texto">
-				<input type="checkbox" name="texto" id="texto">
+				<input type="checkbox" name="texto" id="texto" <?php if($_GET['texto'] == 'on'){ echo 'checked="checked"'; } ?>>
 				Texto
 			</label>
 			<label for="audio">
-				<input type="checkbox" name="audio" id="audio">
+				<input type="checkbox" name="audio" id="audio" <?php if($_GET['audio'] == 'on'){ echo 'checked="checked"'; } ?>>
 				Áudio
 			</label>
 			<label for="video">
-				<input type="checkbox" name="video" id="video">
+				<input type="checkbox" name="video" id="video" <?php if($_GET['video'] == 'on'){ echo 'checked="checked"'; } ?>>
 				Vídeo
 			</label>
 		</fieldset>
@@ -39,9 +39,9 @@
 		            'order'       => 'DESC',
 		            'posts_per_page' => '5',
 		        );
-		        $posts = new WP_Query( $getPosts );
-		        if(count($posts) > 0){
-					while($posts->have_posts()) : $posts->the_post(); 
+		        $destaque = new WP_Query( $getPosts );
+		        if(count($destaque) > 0){
+					while($destaque->have_posts()) : $destaque->the_post(); 
 						get_template_part( 'content-widget', get_post_format() );
 					endwhile;
 		        }
@@ -85,23 +85,18 @@
 							echo '<li class="item" rel="">
 									<h4><a href="'.get_home_url().'/'.mysql2date("Y", $post->post_date).'/'.mysql2date("m", $post->post_date).'" title="'.get_the_title().'">
 										<i class="fa fa-angle-right" aria-hidden="true"></i>
-										<span>'.$mes.' '.$ano.' ()</span>
+										<span>'.$mes.' '.$ano.' ('.countPostDate(mysql2date("m", $post->post_date),mysql2date("Y", $post->post_date)).')</span>
 									</a></h4>
 								</li>';
 						} 
 						$qtd_post = $qtd_post+1;
 						?>
 						
-						<?php
-
-						/*<a href="<?php the_permalink() ?>" rel="bookmark" title="link para < ?php the_title_attribute(); ?>"><?php the_title(); ?></a>*/
-
-					endwhile; 
-					//echo $qtd_post;
+					<?php endwhile; 
 				} 
 				wp_reset_query();
 			?>
 		</ul>
 	</div>
 
-</div>
+</session>
