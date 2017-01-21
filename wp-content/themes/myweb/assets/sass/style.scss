@@ -765,8 +765,24 @@ p {
 		border-top: 1px solid $destaque;
 		padding: 40px 20px 20px;
 
-		ul li span {
-			text-transform: capitalize;
+		ul li {
+			span {
+				text-transform: capitalize;
+
+				strong {
+					font-size: .75rem;
+					color: $destaque;
+					position: relative;
+					top: -3px;
+					@include animacao('','');
+				}
+			}
+
+			a:hover span {
+				strong {
+					color: darken($destaque, 10%);
+				}
+			}
 		}
 	}
 

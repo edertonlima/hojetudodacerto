@@ -85,7 +85,7 @@
 							echo '<li class="item" rel="">
 									<h4><a href="'.get_home_url().'/'.mysql2date("Y", $post->post_date).'/'.mysql2date("m", $post->post_date).'" title="'.get_the_title().'">
 										<i class="fa fa-angle-right" aria-hidden="true"></i>
-										<span>'.$mes.' '.$ano.' ('.countPostDate(mysql2date("m", $post->post_date),mysql2date("Y", $post->post_date)).')</span>
+										<span>'.$mes.' '.$ano.' <strong>('.countPostDate(mysql2date("m", $post->post_date),mysql2date("Y", $post->post_date)).')</strong></span>
 									</a></h4>
 								</li>';
 						} 
