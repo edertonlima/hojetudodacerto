@@ -153,15 +153,14 @@ body * {
 	margin: 0 auto;
 	position: relative;
 	@include box-sizing();
-	@include animacao('','');
 	@include clear();
 
-	@media all and (max-width: 1100px) {
+	@media all and (max-width: 600px) {
 		padding: 0 40px;
 	}
 
-	@media all and (max-width: 650px) {
-		padding: 0 10px;
+	@media all and (max-width: 400px) {
+		padding: 0 20px;
 	}
 }
 
@@ -194,7 +193,7 @@ form {
 	margin-top: 30px;
 }
 
-.msg-form, .msg-form-new {
+.msg-form {
 	text-align: center;
 	font-size: 1rem;
 }
@@ -269,6 +268,7 @@ strong {
 
 h1 {
 	max-width: 336px;
+	max-height: 70px;
 	width: 100%;
 	display: block;
 
@@ -278,18 +278,15 @@ h1 {
 
 		img {
 			width: 100%;
-			max-height: 70px;
-
-			&.mobile {
-				display: none;
-				width: 180px;
-				height: 112px;
-			}
 		}
 
 		&:hover {
 			opacity: .7;
 		}
+	}
+
+	@media all and (max-width: 992px) {
+		width: 180px;
 	}
 }
 
@@ -341,43 +338,15 @@ p {
 	&:not(.footer){
 		border-top: 5px solid $destaque;
 		margin-bottom: 40px;
-
-		@media all and (max-width: 1000px){
-			margin-bottom: 20px;
-		}
-
-		img {
-			@media all and (max-width: 650px) {
-				display: none;
-				
-				&.mobile, &.img-topo {
-					display: block;
-				}
-			}
-		}
 	}
 
 	.logo {
 		padding: 25px;
 
-		@media all and (max-width: 650px) {
-			padding-left: 0;
-			padding-right: 0;
-		}
-
 		.img-topo {
 			max-width: 100%;
 			max-height: 70px;
 			float: right;
-		}
-
-		@media all and (max-width: 450px) {
-			.col-6.col-logo {
-				width: 55%;
-			}
-			.col-6.col-img {
-				width: 45%;
-			}
 		}
 	}
 
@@ -417,14 +386,6 @@ p {
 					&:hover {
 						color: darken($destaque, 10%);
 					}
-
-					@media all and (max-width: 430px) {
-						font-size: 1rem;
-					}
-
-					@media all and (max-width: 355px) {
-						padding: 0 10px;
-					}
 				}
 
 				&.current-menu-item {
@@ -460,10 +421,6 @@ p {
 
 				i {
 					font-size: 1.562rem;
-
-					@media all and (max-width: 355px) {
-						font-size: 1rem;
-					}
 				}
 
 				&.current-menu-item {
@@ -496,13 +453,6 @@ p {
 					&:hover {
 						i {
 							color: #ecbf1c;
-						}
-					}
-
-					@media all and (max-width: 430px) {
-						padding: 0 5px;
-						i {
-							font-size: 1rem;
 						}
 					}
 				}
@@ -539,10 +489,6 @@ p {
 			max-width: 500px;
 			max-height: none;
 			display: inline-block;
-
-			img {
-				max-height: none;
-			}
 		}
 	}
 
@@ -557,16 +503,6 @@ p {
 			}
 		}
 	}
-	
-	@media all and (max-width: 880px){
-		.col-8, .col-4 {
-			width: 100%;
-
-			.contato {
-				text-align: center;
-			}
-		}
-	}
 }
 
 
@@ -576,7 +512,6 @@ p {
 		display: block;
 		padding: 20px;
 		background-color: $destaque;
-		@include box-sizing();
 		@include clear();
 		
 		img {
@@ -606,10 +541,6 @@ p {
 			line-height: .875rem;
 			opacity: .7;
 		}
-
-		@media all and (max-width: 1000px){
-			display: none;
-		}
 	}
 
 	.search {
@@ -618,17 +549,12 @@ p {
 		margin: 40px auto;
 		position: relative;
 
-		@media all and (max-width: 1000px){
-			margin: 0;
-		}
-
 		fieldset {
 			display: block;
 
 			&.busca {
 				height: 30px;
 				border: 1px solid $destaque;
-				position: relative;
 
 				i {
 					top: 2px;
@@ -679,22 +605,6 @@ p {
 				display: inline-block;
 				padding: 0;
 				top: 2px;
-			}
-		}
-
-		@media all and (max-width: 1000px){
-			width: 100%;
-		}
-
-		@media all and (min-width: 450px) and (max-width: 1000px){
-			fieldset {
-				width: 45%;
-				float: left;
-
-				&.filtro {
-					text-align: left;
-					margin: 4px 0 0 5%;
-				}
 			}
 		}
 	}
@@ -754,10 +664,6 @@ p {
 				margin-bottom: 0px;
 			}
 		}
-
-		@media all and (max-width: 1000px){
-			display: none;
-		}
 	}
 
 	.arquivos {
@@ -765,29 +671,9 @@ p {
 		border-top: 1px solid $destaque;
 		padding: 40px 20px 20px;
 
-		ul li {
-			span {
-				text-transform: capitalize;
-
-				strong {
-					font-size: .75rem;
-					color: $destaque;
-					position: relative;
-					top: -3px;
-					@include animacao('','');
-				}
-			}
-
-			a:hover span {
-				strong {
-					color: darken($destaque, 10%);
-				}
-			}
+		ul li span {
+			text-transform: capitalize;
 		}
-	}
-
-	@media all and (max-width: 1000px){
-		margin-bottom: 10px;
 	}
 }
 
@@ -808,38 +694,18 @@ p {
 		width: 250px; 
 		margin-right: 20px;
 		border: 1px solid #f4f4f4;
-
-		@media all and (max-width: 700px){
-			width: 180px;
-		}
-
-		@media all and (max-width: 550px){
-			display: none;
-		}
 	}
 
 	.post-header {
 		@include clear();
 
 		.container-info {
-
-			&.banner-padding {
-				padding-left: 270px;
-				@media all and (max-width: 700px){
-					padding-left: 200px;
-				}
-
-				@media all and (max-width: 550px){
-					padding: 0px;
-					width: 100%;
-					display: block;
-					clear: both;
-				}
-			}
+			padding-left: 220px;
 		}
 
 		.descricao {
 			margin-bottom: 20px;
+			line-height: 1rem;
 		}
 
 		.post-date {
@@ -877,25 +743,13 @@ p {
 			&.youtube {
 				iframe {
 					height: 460px;
-
-					@media all and (max-width: 800px){
-						height: 380px;
-					}
-
-					@media all and (max-width: 550px){
-						height: 290px;
-					}
-
-					@media all and (max-width: 400px){
-						height: 190px;
-					}
 				}
 			}
 		}
 
 		.conteudo {
 			p {
-				margin-bottom: 5px;
+				margin-bottom: 15px;
 			}
 
 			img {
@@ -907,7 +761,7 @@ p {
 				padding: 0;
 				line-height: normal;
 				font-weight: $bold;
-				color: $cor-txt;
+				color: #000000;
 				text-transform: none;
 			}
 
@@ -943,22 +797,16 @@ p {
 				border-right: 1px solid #ffffff;
 				@include animacao('','');
 
-				@media all and (max-width: 450px) {
-					padding: 0 10px;
-				}
-
 				a {
 					width: 20px;
-					height: 42px;
-					display: table;
+					height: 40px;
+					display: block;
 					text-align: center;
-					line-height: 42px;
+					line-height: 50px;
 				}
 
 				i {
 					color: #ffffff;
-					display: table-cell;
-					vertical-align: middle;
 				}
 
 				span {
@@ -993,10 +841,6 @@ p {
 					padding: 0 20px;
 					border: none;
 					border: 1px solid #cdcbcc;
-
-					@media all and (max-width: 450px) {
-						padding: 0 10px;
-					}
 				}
 			}
 		}
@@ -1044,7 +888,6 @@ p {
 
 	}
 }
-
 
 .post-det {
 
@@ -1144,20 +987,9 @@ p {
 	}
 }
 
-.page {
-	.categoria-header {
-		margin-bottom: 0px;
-	}
-}
 
 .contato {
 	width: 100%;
-
-	@media all and (max-width: 600px){
-		fieldset {
-			width: 100%!important;
-		}
-	}
 }
 
 form {
@@ -1208,7 +1040,6 @@ form {
 
 	form {
 		margin: 0;
-		padding: 0 20px;
 
 		input {
 			border-color: #ffffff; 
@@ -1231,24 +1062,5 @@ form {
 		button {
 			margin-top: 20px;
 		}
-
-		@media all and (max-width: 880px){
-			fieldset {
-				padding: 0 3px!important;
-			}
-		}
-
-		@media all and (max-width: 600px){
-			fieldset {
-				width: 100%!important; 
-				padding: 0px!important;
-			}
-		}
-	}
-}
-
-@media all and (max-width: 1000px){
-	.body-container, .sidebar {
-		width: 100%!important;
 	}
 }
